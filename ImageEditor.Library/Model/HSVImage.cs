@@ -12,6 +12,15 @@ namespace ImageEditor.Library.Model
         public float[,] Saturation { get; set; }
         public float[,] Value { get; set; }
 
+        public HSVImage(int x, int y)
+        {
+            X = x;
+            Y = y;
+            Hue = new float[x,y];
+            Saturation = new float[x, y];
+            Value = new float[x, y];
+        }
+
         public HSVImage(int x, int y, float[,] hue, float[,] saturation, float[,] value)
         {
             X = x;
