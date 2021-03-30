@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace ImageEditor.Library.Model
@@ -26,6 +27,11 @@ namespace ImageEditor.Library.Model
             R = r;
             G = g;
             B = b;
+        }
+
+        public Color GetPixel(int x, int y)
+        {
+            return Color.FromArgb(R[x, y], G[x, y], B[x, y]);
         }
     }
 }
