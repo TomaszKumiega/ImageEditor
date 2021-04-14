@@ -21,6 +21,6 @@ namespace ImageEditor.Library.Tools
         /// <param name="image"></param>
         /// <param name="contrast"></param>
         /// <returns></returns>
-        Bitmap ChangeContrast(Bitmap image, float contrast)
+        Bitmap ChangeContrast(Bitmap image, float contrast);
     }
 }
