@@ -11,11 +11,16 @@ namespace ImageEditor.Library.Tools
     {
         private IImageConverter Converter { get; }
         private IChangeBrightnessAlgorithm ChangeBrightnessAlgorithm { get; }
+        private IContrastStretchingAlgorithm ContrastStretchingAlgorithm { get; }
+        private IContrastShrinkingAlgorithm ContrastShrinkingAlgorithm { get; }
 
-        public LightingEnhancementTools(IImageConverter converter, IChangeBrightnessAlgorithm changeBrightnessAlgorithm)
+        public LightingEnhancementTools(IImageConverter converter, IChangeBrightnessAlgorithm changeBrightnessAlgorithm, 
+            IContrastStretchingAlgorithm contrastStretchingAlgorithm, IContrastShrinkingAlgorithm contrastShrinkingAlgorithm)
         {
             Converter = converter;
             ChangeBrightnessAlgorithm = changeBrightnessAlgorithm;
+            ContrastStretchingAlgorithm = contrastStretchingAlgorithm;
+            ContrastShrinkingAlgorithm = contrastShrinkingAlgorithm;
         }
 
         public Bitmap ChangeBrightness(Bitmap image, float brightness)
@@ -24,6 +29,33 @@ namespace ImageEditor.Library.Tools
             var hsvImage = Converter.BitmapToHSVImage(image);
             var hsvResult = ChangeBrightnessAlgorithm.ChangeBrightness(hsvImage, scaledBrightness);
             var result = Converter.HSVImageToBitmap(hsvResult);
+
+            return result;
+        }
+
+        public Bitmap ChangeContrast(Bitmap image, float contrast)
+        {
+            Bitmap result = null;
+
+            if(contrast>0)
+            {
+                float min = contrast / 500;
+                float max = 1 - min;
+
+                var hsvImage = Converter.BitmapToHSVImage(image);
+                var hsvResult = ContrastStretchingAlgorithm.StretchContrast(hsvImage, min, max);
+                result = Converter.HSVImageToBitmap(hsvResult);
+            }
+            else if(contrast<0)
+            {
+                contrast = contrast/-1;
+                float min = contrast / 500;
+                float max = 1 - min;
+
+                var hsvImage = Converter.BitmapToHSVImage(image);
+                var hsvResult = ContrastShrinkingAlgorithm.ShrinkContrast(hsvImage, min, max);
+                result = Converter.HSVImageToBitmap(hsvResult);
+            }
 
             return result;
         }
