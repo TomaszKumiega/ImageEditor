@@ -20,8 +20,9 @@ namespace ImageEditor.Library.Tools
 
         public Bitmap ChangeBrightness(Bitmap image, float brightness)
         {
+            var scaledBrightness = brightness / 100;
             var hsvImage = Converter.BitmapToHSVImage(image);
-            var hsvResult = ChangeBrightnessAlgorithm.ChangeBrightness(hsvImage, brightness);
+            var hsvResult = ChangeBrightnessAlgorithm.ChangeBrightness(hsvImage, scaledBrightness);
             var result = Converter.HSVImageToBitmap(hsvResult);
 
             return result;

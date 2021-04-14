@@ -7,6 +7,12 @@ namespace ImageEditor.Library.Tools
 {
     public interface ILightingEnhancementTools
     {
+        /// <summary>
+        /// Changes brightness of an image. Brightness is a value between -100 to 100.
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="brightness"></param>
+        /// <returns></returns>
         Bitmap ChangeBrightness(Bitmap image, float brightness);
     }
 }
