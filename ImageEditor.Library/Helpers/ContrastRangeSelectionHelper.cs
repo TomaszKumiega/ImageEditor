@@ -9,7 +9,7 @@ namespace ImageEditor.Library.Helpers
     {
         public void ContrastStretchingRangeSelection(IntensityHistogram histogram, out float minRange, out float maxRange)
         {
-            float fraction = 0.3f;
+            float fraction = 0.05f;
 
             var expectedNumberOfCutValues = histogram.NumberOfValues * fraction;
             var numberOfCutValues = 0;
