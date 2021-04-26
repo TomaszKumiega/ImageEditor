@@ -7,7 +7,7 @@ namespace ImageEditor.Library.Model
 {
     public class IntensityHistogram : Histogram<float>
     {
-        public IntensityHistogram(float[] intensityValues, float minRange, float maxRange)
+        public IntensityHistogram(float[] intensityValues)
         {
             NumberOfValues = intensityValues.Length;
 
@@ -32,7 +32,6 @@ namespace ImageEditor.Library.Model
             else
             {
                 return 0;
-
             }
         }
     }
