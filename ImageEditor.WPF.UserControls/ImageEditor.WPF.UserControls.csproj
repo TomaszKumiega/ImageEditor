@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ImageEditor.Library\ImageEditor.Library.csproj" />
+    <ProjectReference Include="..\ImageEditor.ViewModel\ImageEditor.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>
