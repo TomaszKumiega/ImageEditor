@@ -9,5 +9,6 @@ namespace ImageEditor.ViewModel
     {
         public Bitmap OriginalImage { get; set; }
         public Bitmap EditedImage { get; set; }
+        public string ImagePath { get; set; }
     }
 }
