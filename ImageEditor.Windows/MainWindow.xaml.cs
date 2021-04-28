@@ -24,5 +24,10 @@ namespace ImageEditor.Windows
         {
             InitializeComponent();
         }
+
+        private void RectangleTitleBarBackground_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }

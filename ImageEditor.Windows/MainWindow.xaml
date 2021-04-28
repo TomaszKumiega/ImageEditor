@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageEditor.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Background="Transparent" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
+        <!--Title Bar-->
+        <Rectangle x:Name="RectangleTitleBarBackground" Fill="#202225" Grid.ColumnSpan="5" MouseDown="RectangleTitleBarBackground_MouseDown"/>
+        <TextBlock x:Name="TextBlockTitleBar" Margin="5,0,0,0"  Text="Image Editor" FontFamily="Segoe UI" FontSize="18" Foreground="#949597" VerticalAlignment="Bottom" />
     </Grid>
 </Window>
