@@ -28,7 +28,7 @@
             <TextBlock Text="Save Image As" FontSize="20"/>
         </Button>
 
-        <Button x:Name="ResetImageButton" Grid.Column="4" Margin="10,10,10,10">
+        <Button x:Name="ResetImageButton" Grid.Column="4" Margin="10,10,10,10" Command="{Binding ResetChangesCommand}">
             <TextBlock Text="Reset Changes" FontSize="20"/>
         </Button>
 
