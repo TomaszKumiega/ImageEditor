@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Text;
 
 namespace ImageEditor.Library.Converter
@@ -16,7 +17,7 @@ namespace ImageEditor.Library.Converter
 
             for(int x=0;x<bitmap.Width; x++)
             {
-                for(int y=0;x<bitmap.Height;x++)
+                for(int y=0;y<bitmap.Height;y++)
                 {
                     var color = bitmap.GetPixel(x, y);
                     hue[x,y] = color.GetHue();
@@ -37,7 +38,7 @@ namespace ImageEditor.Library.Converter
 
             for (int x=0;x<bitmap.Width; x++)
             {
-                for(int y=0;x<bitmap.Height; x++)
+                for(int y=0;y<bitmap.Height; y++)
                 {
                     var color = bitmap.GetPixel(x, y);
                     red[x, y] = color.R;
@@ -62,7 +63,7 @@ namespace ImageEditor.Library.Converter
                     bitmap.SetPixel(x, y, color);
                 }
             }
-
+            
             return bitmap;
         }
 
