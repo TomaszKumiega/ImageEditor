@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageEditor.WPF.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace ImageEditor.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private ImageViewUserControl ImageView { get; }
+
+        public MainWindow(ImageViewUserControl imageView)
         {
+            ImageView = imageView;
             InitializeComponent();
+            AddControlsToTheView();
+        }
+
+        private void AddControlsToTheView()
+        {
+            MainGrid.Children.Add(ImageView);
+            ImageView.HorizontalAlignment = HorizontalAlignment.Stretch;
+            ImageView.VerticalAlignment = VerticalAlignment.Stretch;
+            Grid.SetColumn(ImageView, 0);
+            Grid.SetRow(ImageView, 0);
         }
 
         private void RectangleTitleBarBackground_MouseDown(object sender, MouseButtonEventArgs e)
