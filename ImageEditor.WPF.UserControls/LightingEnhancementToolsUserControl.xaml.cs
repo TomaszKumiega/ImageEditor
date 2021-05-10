@@ -24,17 +24,5 @@ namespace ImageEditor.WPF.UserControls
             DataContext = viewModel;
             InitializeComponent();
         }
-
-        private void BrightnessSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            var viewModel = DataContext as ILightingEnhancementToolsViewModel;
-            viewModel.Brightness = (float) BrightnessSlider.Value;
-        }
-
-        private void ContrastSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            var viewModel = DataContext as ILightingEnhancementToolsViewModel;
-            viewModel.Contrast = (float) ContrastSlider.Value;
-        }
     }
 }

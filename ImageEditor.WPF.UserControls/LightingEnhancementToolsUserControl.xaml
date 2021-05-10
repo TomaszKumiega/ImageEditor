@@ -28,8 +28,8 @@
 
         <TextBlock x:Name="Brightness" Margin="15,0,10,0"  Text="Brightness" Grid.Column="0" Grid.Row="1" FontSize="17" FontFamily="Segoe Ui" Foreground="WhiteSmoke"/>
         <TextBlock x:Name="Contrast" Margin="15,0,10,0"  Text="Contrast" Grid.Column="0" Grid.Row="3" FontSize="17" FontFamily="Segoe Ui" Foreground="WhiteSmoke"/>
-        <Slider x:Name="BrightnessSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="1" Maximum="100" Minimum="100" Value="0" SmallChange="1" ValueChanged="BrightnessSlider_ValueChanged"/>
-        <Slider x:Name="ContrastSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="3" Maximum="100" Minimum="100" Value="0" SmallChange="1" ValueChanged="ContrastSlider_ValueChanged"/>
+        <Slider x:Name="BrightnessSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="1" Maximum="100" Minimum="-100" Value="{Binding Path=Brightness, Delay=500}" SmallChange="1"/>
+        <Slider x:Name="ContrastSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="3" Maximum="100" Minimum="-100" Value="{Binding Path=Contrast, Delay=500}" SmallChange="1"/>
 
     </Grid>
 </UserControl>
