@@ -1,4 +1,5 @@
 ﻿using ImageEditor.Library.Helpers;
+using ImageEditor.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,8 +12,11 @@ namespace ImageEditor.ViewModel
         private IImageProvider ImageProvider { get; }
         private IImageIO ImageIO { get; }
 
-        public MenuViewModel(IImageProvider imageProvider, IImageIO imageIO)
+        public SaveImageCommand SaveImageCommand { get; }
+
+        public MenuViewModel(IImageProvider imageProvider, IImageIO imageIO, ICommandFactory commandFactory)
         {
+            SaveImageCommand = commandFactory.GetSaveImageCommand(this);
             ImageProvider = imageProvider;
             ImageIO = imageIO;
         }
