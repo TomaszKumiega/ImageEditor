@@ -39,6 +39,10 @@ namespace ImageEditor.Windows
             builder.RegisterType<ImageViewUserControl>().AsSelf();
             #endregion
 
+            #region Windows
+            builder.RegisterType<MainWindow>().AsSelf();
+            #endregion
+
             return builder.Build();
         }
     }

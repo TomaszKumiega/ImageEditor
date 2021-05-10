@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,13 @@ namespace ImageEditor.Windows
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            var container = ContainerConfig.Configure();
+
+            var mainWindow = container.Resolve<MainWindow>();
+
+            mainWindow.Show();
+        }
     }
 }
