@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="ImageEditor.WPF.UserControls.LightingEnhancementToolsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImageEditor.WPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="250">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="Brightness" Margin="15,0,10,0"  Text="Brightness" Grid.Column="0" Grid.Row="1" FontSize="17" FontFamily="Segoe Ui" Foreground="WhiteSmoke"/>
+        <TextBlock x:Name="Contrast" Margin="15,0,10,0"  Text="Contrast" Grid.Column="0" Grid.Row="3" FontSize="17" FontFamily="Segoe Ui" Foreground="WhiteSmoke"/>
+        <Slider x:Name="BrightnessSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="1" Maximum="100" Minimum="100" Value="0" SmallChange="1" ValueChanged="BrightnessSlider_ValueChanged"/>
+        <Slider x:Name="ContrastSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="3" Maximum="100" Minimum="100" Value="0" SmallChange="1" ValueChanged="ContrastSlider_ValueChanged"/>
+
+    </Grid>
+</UserControl>
