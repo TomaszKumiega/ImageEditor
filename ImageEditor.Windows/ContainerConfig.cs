@@ -40,6 +40,7 @@ namespace ImageEditor.Windows
             #region UserControls
             builder.RegisterType<ImageViewUserControl>().AsSelf();
             builder.RegisterType<MenuView>().AsSelf();
+            builder.RegisterType<LightingEnhancementToolsUserControl>().AsSelf();
             #endregion
 
             #region Windows
