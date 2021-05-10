@@ -10,12 +10,13 @@ namespace ImageEditor.Library.Helpers
     {
         public Bitmap LoadImage(string path)
         {
-            return new Bitmap(path);
+            var fileStream = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+            return new Bitmap(fileStream);
         }
 
         public void SaveImage(Bitmap bitmap, string path)
         {
-            var stream = File.Open(path, FileMode.OpenOrCreate, FileAccess.Write);
+            var stream = File.Open(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             bitmap.Save(stream, bitmap.RawFormat);
             stream.Close();
         }
