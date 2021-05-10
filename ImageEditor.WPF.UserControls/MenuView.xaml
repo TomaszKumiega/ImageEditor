@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="LoadImageButton" Grid.Column="1" Margin="10,10,10,10">
+        <Button x:Name="LoadImageButton" Grid.Column="1" Margin="10,10,10,10" Click="LoadImageButton_Click">
             <TextBlock Text="Load Image" FontSize="20"/>
         </Button>
 

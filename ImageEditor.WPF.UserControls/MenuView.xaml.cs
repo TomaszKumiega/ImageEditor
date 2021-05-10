@@ -39,5 +39,17 @@ namespace ImageEditor.WPF.UserControls
                 viewModel.SaveImageAs(dialog.FileName);
             }
         }
+
+        private void LoadImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            var result = dialog.ShowDialog(this.GetIWin32Window());
+            var viewModel = DataContext as IMenuViewModel;
+
+            if(result == DialogResult.OK)
+            {
+                viewModel.LoadImage(dialog.FileName);
+            }
+        }
     }
 }
