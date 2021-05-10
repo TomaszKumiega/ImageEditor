@@ -13,10 +13,12 @@ namespace ImageEditor.ViewModel
         private IImageIO ImageIO { get; }
 
         public SaveImageCommand SaveImageCommand { get; }
+        public ResetChangesCommand ResetChangesCommand { get; }
 
         public MenuViewModel(IImageProvider imageProvider, IImageIO imageIO, ICommandFactory commandFactory)
         {
             SaveImageCommand = commandFactory.GetSaveImageCommand(this);
+            ResetChangesCommand = commandFactory.GetResetChangesCommand(this);
             ImageProvider = imageProvider;
             ImageIO = imageIO;
         }
