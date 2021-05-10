@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageEditor.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Background="Transparent" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" Height="450" Width="800">
+        Title="MainWindow" Background="#2b2d30" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" Height="450" Width="800">
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
