@@ -4,6 +4,7 @@ using ImageEditor.Library.Converter;
 using ImageEditor.Library.Helpers;
 using ImageEditor.Library.Tools;
 using ImageEditor.ViewModel;
+using ImageEditor.ViewModel.Commands;
 using ImageEditor.WPF.UserControls;
 using System;
 using System.Collections.Generic;
@@ -33,10 +34,12 @@ namespace ImageEditor.Windows
             builder.RegisterType<ImageViewViewModel>().As<IImageViewViewModel>();
             builder.RegisterType<MenuViewModel>().As<IMenuViewModel>();
             builder.RegisterType<LigthingEnhancementToolsViewModel>().As<ILightingEnhancementToolsViewModel>();
+            builder.RegisterType<CommandFactory>().As<ICommandFactory>();
             #endregion
 
             #region UserControls
             builder.RegisterType<ImageViewUserControl>().AsSelf();
+            builder.RegisterType<MenuView>().AsSelf();
             #endregion
 
             #region Windows
