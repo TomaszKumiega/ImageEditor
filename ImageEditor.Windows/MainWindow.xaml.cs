@@ -22,10 +22,12 @@ namespace ImageEditor.Windows
     public partial class MainWindow : Window
     {
         private ImageViewUserControl ImageView { get; }
+        private MenuView MenuView { get; }
 
-        public MainWindow(ImageViewUserControl imageView)
+        public MainWindow(ImageViewUserControl imageView, MenuView menuView)
         {
             ImageView = imageView;
+            MenuView = menuView;
             InitializeComponent();
             AddControlsToTheView();
         }
@@ -36,7 +38,13 @@ namespace ImageEditor.Windows
             ImageView.HorizontalAlignment = HorizontalAlignment.Stretch;
             ImageView.VerticalAlignment = VerticalAlignment.Stretch;
             Grid.SetColumn(ImageView, 0);
-            Grid.SetRow(ImageView, 0);
+            Grid.SetRow(ImageView, 1);
+
+            MainGrid.Children.Add(MenuView);
+            MenuView.HorizontalAlignment = HorizontalAlignment.Stretch;
+            MenuView.VerticalAlignment = VerticalAlignment.Stretch;
+            Grid.SetColumn(MenuView, 0);
+            Grid.SetRow(MenuView, 2);
         }
 
         private void RectangleTitleBarBackground_MouseDown(object sender, MouseButtonEventArgs e)
