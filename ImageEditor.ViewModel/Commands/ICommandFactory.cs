@@ -7,5 +7,6 @@ namespace ImageEditor.ViewModel.Commands
     public interface ICommandFactory
     {
         SaveImageCommand GetSaveImageCommand(IMenuViewModel viewModel);
+        ResetChangesCommand GetResetChangesCommand(IMenuViewModel viewModel);
     }
 }

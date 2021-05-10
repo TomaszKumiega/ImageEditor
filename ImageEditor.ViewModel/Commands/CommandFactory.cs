@@ -10,5 +10,10 @@ namespace ImageEditor.ViewModel.Commands
         {
             return new SaveImageCommand(viewModel);
         }
+
+        public ResetChangesCommand GetResetChangesCommand(IMenuViewModel viewModel)
+        {
+            return new ResetChangesCommand(viewModel);
+        }
     }
 }
