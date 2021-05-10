@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -20,7 +21,7 @@ namespace ImageEditor.WPF.UserControls.Helpers
 
             using(MemoryStream ms = new MemoryStream())
             {
-                bitmap.Save(ms, bitmap.RawFormat);
+                bitmap.Save(ms, ImageFormat.Png);
                 ms.Seek(0, SeekOrigin.Begin);
                 result.BeginInit();
                 result.CacheOption = BitmapCacheOption.OnLoad;
