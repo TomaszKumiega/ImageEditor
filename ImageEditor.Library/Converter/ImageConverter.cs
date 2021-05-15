@@ -32,22 +32,16 @@ namespace ImageEditor.Library.Converter
 
         public RGBImage BitmapToRGBImage(Bitmap bitmap)
         {
-            int[,] red = new int[bitmap.Width, bitmap.Height];
-            int[,] green = new int[bitmap.Width, bitmap.Height];
-            int[,] blue = new int[bitmap.Width, bitmap.Height];
+            var image = new RGBImage(bitmap.Width, bitmap.Height);
 
             for (int x=0;x<bitmap.Width; x++)
             {
                 for(int y=0;y<bitmap.Height; y++)
                 {
-                    var color = bitmap.GetPixel(x, y);
-                    red[x, y] = color.R;
-                    green[x, y] = color.G;
-                    blue[x, y] = color.B;
+                    image.SetPixel(x, y, bitmap.GetPixel(x, y));
                 }
             }
 
-            var image = new RGBImage(bitmap.Width, bitmap.Height, red, green, blue);
             return image;
         }
 
