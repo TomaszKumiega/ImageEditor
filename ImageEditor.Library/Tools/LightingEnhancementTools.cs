@@ -33,7 +33,7 @@ namespace ImageEditor.Library.Tools
 
         public Bitmap ChangeBrightness(Bitmap image, float brightness)
         {
-            var scaledBrightness = (int) (brightness * 2.5);
+            var scaledBrightness = (int) (brightness * 2.55);
             var rgbImage = Converter.BitmapToRGBImage(image);
             var rgbResult = ChangeBrightnessAlgorithm.ChangeBrightness(rgbImage, scaledBrightness);
             var result = Converter.RGBImageToBitmap(rgbResult);
