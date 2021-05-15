@@ -35,5 +35,12 @@ namespace ImageEditor.Library.Model
         {
             return Color.FromArgb(R[x, y], G[x, y], B[x, y]);
         }
+
+        public void SetPixel(int x, int y, Color color)
+        {
+            R[x, y] = color.R;
+            G[x, y] = color.G;
+            B[x, y] = color.B;
+        }
     }
 }
