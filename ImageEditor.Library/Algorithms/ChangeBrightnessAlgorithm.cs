@@ -15,9 +15,14 @@ namespace ImageEditor.Library.Algorithms
             {
                 for (int y = 0; y < image.Y; y++)
                 {
-                    result.R[x, y] = (image.R[x,y] + brightnessDifference) > 255 ? 255 : image.R[x, y] + brightnessDifference;
-                    result.G[x, y] = (image.G[x,y] + brightnessDifference) > 255 ? 255 : image.G[x, y] + brightnessDifference;
-                    result.B[x, y] = (image.B[x,y] + brightnessDifference) > 255 ? 255 : image.B[x, y] + brightnessDifference;
+                    var r = image.R[x, y] + brightnessDifference;
+                    var g = image.G[x, y] + brightnessDifference;
+                    var b = image.B[x, y] + brightnessDifference;
+
+                    // checks if value is in range of <0, 255>
+                    result.R[x, y] = r > 255 ? 255 : r < 0 ? 0 : r; 
+                    result.G[x, y] = g > 255 ? 255 : g < 0 ? 0 : g;
+                    result.B[x, y] = b > 255 ? 255 : b < 0 ? 0 : b;
                 }
             }
 
