@@ -33,10 +33,10 @@ namespace ImageEditor.Library.Tools
 
         public Bitmap ChangeBrightness(Bitmap image, float brightness)
         {
-            var scaledBrightness = brightness / 100;
-            var hsvImage = Converter.BitmapToHSVImage(image);
-            var hsvResult = ChangeBrightnessAlgorithm.ChangeBrightness(hsvImage, scaledBrightness);
-            var result = Converter.HSVImageToBitmap(hsvResult);
+            var scaledBrightness = (int) (brightness * 2.5);
+            var rgbImage = Converter.BitmapToRGBImage(image);
+            var rgbResult = ChangeBrightnessAlgorithm.ChangeBrightness(rgbImage, scaledBrightness);
+            var result = Converter.RGBImageToBitmap(rgbResult);
 
             return result;
         }
