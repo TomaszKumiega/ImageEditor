@@ -7,17 +7,17 @@ namespace ImageEditor.Library.Algorithms
 {
     public class ChangeBrightnessAlgorithm : IChangeBrightnessAlgorithm
     {
-        public HSVImage ChangeBrightness(HSVImage image, float brightnessDifference)
+        public RGBImage ChangeBrightness(RGBImage image, int brightnessDifference)
         {
-            var result = new HSVImage(image.X, image.Y);
+            var result = new RGBImage(image.X, image.Y);
 
             for (int x = 0; x < image.X; x++)
             {
                 for (int y = 0; y < image.Y; y++)
                 {
-                    result.Hue[x, y] = image.Hue[x, y];
-                    result.Saturation[x, y] = image.Saturation[x, y];
-                    result.Value[x,y] = image.Value[x, y] + brightnessDifference;
+                    result.R[x, y] = (image.R[x,y] + brightnessDifference) > 255 ? 255 : image.R[x, y] + brightnessDifference;
+                    result.G[x, y] = (image.G[x,y] + brightnessDifference) > 255 ? 255 : image.G[x, y] + brightnessDifference;
+                    result.B[x, y] = (image.B[x,y] + brightnessDifference) > 255 ? 255 : image.B[x, y] + brightnessDifference;
                 }
             }
 
