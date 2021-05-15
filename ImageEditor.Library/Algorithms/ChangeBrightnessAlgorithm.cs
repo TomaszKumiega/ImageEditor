@@ -1,28 +1,32 @@
 ﻿using ImageEditor.Library.Model;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace ImageEditor.Library.Algorithms
 {
     public class ChangeBrightnessAlgorithm : IChangeBrightnessAlgorithm
     {
-        public RGBImage ChangeBrightness(RGBImage image, int brightnessDifference)
+        public Bitmap ChangeBrightness(Bitmap image, int brightnessDifference)
         {
-            var result = new RGBImage(image.X, image.Y);
+            var result = (Bitmap) image.Clone();
 
-            for (int x = 0; x < image.X; x++)
+            for (int x = 0; x < image.Width; x++)
             {
-                for (int y = 0; y < image.Y; y++)
+                for (int y = 0; y < image.Height; y++)
                 {
-                    var r = image.R[x, y] + brightnessDifference;
-                    var g = image.G[x, y] + brightnessDifference;
-                    var b = image.B[x, y] + brightnessDifference;
+                    var color = result.GetPixel(x, y);
 
-                    // checks if value is in range of <0, 255>
-                    result.R[x, y] = r > 255 ? 255 : r < 0 ? 0 : r; 
-                    result.G[x, y] = g > 255 ? 255 : g < 0 ? 0 : g;
-                    result.B[x, y] = b > 255 ? 255 : b < 0 ? 0 : b;
+                    var r = color.R + brightnessDifference;
+                    var g = color.G + brightnessDifference;
+                    var b = color.B + brightnessDifference;
+                    
+                    r = r > 255 ? 255 : r < 0 ? 0 : r;
+                    g = g > 255 ? 255 : g < 0 ? 0 : g;
+                    b = b > 255 ? 255 : b < 0 ? 0 : b;
+
+                    result.SetPixel(x, y, Color.FromArgb(r, g, b));
                 }
             }
 
