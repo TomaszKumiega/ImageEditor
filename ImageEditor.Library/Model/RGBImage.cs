@@ -15,6 +15,8 @@ namespace ImageEditor.Library.Model
 
         public RGBImage(int x, int y)
         {
+            X = x;
+            Y = y;
             R = new int[x, y];
             G = new int[x, y];
             B = new int[x, y];
