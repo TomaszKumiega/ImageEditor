@@ -17,11 +17,14 @@ namespace ImageEditor.ViewModel
 
         public float Contrast 
         { 
-            get => _contrast; 
+            get => _contrast;
             set
             {
-                if (value != 0) OnPropertyChanged("Contrast");
-                _contrast = value;
+                if (value != _contrast)
+                {
+                    _contrast = value;
+                    OnPropertyChanged("Contrast");
+                }
             }
         }
 
@@ -31,8 +34,11 @@ namespace ImageEditor.ViewModel
             get => _brightness; 
             set
             {
-                if (value != 0) OnPropertyChanged("Brightness");
-                _brightness = value;
+                if (value != _brightness)
+                {
+                    _brightness = value;
+                    OnPropertyChanged("Brightness");
+                }
             }
         }
 
@@ -53,13 +59,13 @@ namespace ImageEditor.ViewModel
         private void ChangeContrast(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Contrast") return;
-            ImageProvider.EditedImage = LightingEnhancementTools.ChangeContrast(ImageProvider.EditedImage, Contrast);
+            ImageProvider.EditedImage = LightingEnhancementTools.ChangeContrast(ImageProvider.EditedImage, _contrast);
         }
 
-        private void ChangeBrightness(object sender, PropertyChangedEventArgs args)
+        private async void ChangeBrightness(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Brightness") return;
-            ImageProvider.EditedImage = LightingEnhancementTools.ChangeBrightness(ImageProvider.EditedImage, Brightness);
+            ImageProvider.EditedImage = await LightingEnhancementTools.ChangeBrightness(ImageProvider.OriginalImage, _brightness);
         }
     }
 }
