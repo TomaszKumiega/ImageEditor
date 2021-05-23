@@ -10,27 +10,32 @@ namespace ImageEditor.Library.Algorithms
     {
         public Bitmap ChangeBrightness(Bitmap image, int brightnessDifference)
         {
-            var result = (Bitmap) image.Clone();
+            var clonedImage = (Bitmap) image.Clone();
 
-            for (int x = 0; x < image.Width; x++)
+            Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
+            System.Drawing.Imaging.BitmapData bitmapData =
+                clonedImage.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, clonedImage.PixelFormat);
+
+            IntPtr ptr = bitmapData.Scan0;
+            int bytes = Math.Abs(bitmapData.Stride) * clonedImage.Height;
+            byte[] rgbValues = new byte[bytes];
+
+            System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
+
+            for (int i=0; i<rgbValues.Length; i++)
             {
-                for (int y = 0; y < image.Height; y++)
-                {
-                    var color = result.GetPixel(x, y);
-
-                    var r = color.R + brightnessDifference;
-                    var g = color.G + brightnessDifference;
-                    var b = color.B + brightnessDifference;
-                    
-                    r = r > 255 ? 255 : r < 0 ? 0 : r;
-                    g = g > 255 ? 255 : g < 0 ? 0 : g;
-                    b = b > 255 ? 255 : b < 0 ? 0 : b;
-
-                    result.SetPixel(x, y, Color.FromArgb(r, g, b));
-                }
+                var val = (int) rgbValues[i];
+                val += brightnessDifference;
+                if (val > 255) val = 255;
+                if (val < 0) val = 0;
+                rgbValues[i] = (byte) val;
             }
 
-            return result;
+            System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, bytes);
+
+            clonedImage.UnlockBits(bitmapData);
+
+            return clonedImage;
         }
     }
 }
