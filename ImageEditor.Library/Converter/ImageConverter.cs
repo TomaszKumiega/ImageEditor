@@ -30,21 +30,6 @@ namespace ImageEditor.Library.Converter
             return image;
         }
 
-        public RGBImage BitmapToRGBImage(Bitmap bitmap)
-        {
-            var image = new RGBImage(bitmap.Width, bitmap.Height);
-
-            for (int x=0;x<bitmap.Width; x++)
-            {
-                for(int y=0;y<bitmap.Height; y++)
-                {
-                    image.SetPixel(x, y, bitmap.GetPixel(x, y));
-                }
-            }
-
-            return image;
-        }
-
         public Bitmap HSVImageToBitmap(HSVImage image)
         {
             var bitmap = new Bitmap(image.X, image.Y);
@@ -59,25 +44,6 @@ namespace ImageEditor.Library.Converter
             }
             
             return bitmap;
-        }
-
-        public RGBImage HSVImageToRGBImage(HSVImage image)
-        {
-            var rgbImage = new RGBImage(image.X, image.Y);
-
-            for(int x=0; x<image.X; x++)
-            {
-                for(int y=0; y<image.Y; y++)
-                {
-                    var color = HSVPixelToColor(image.Hue[x, y], image.Saturation[x, y], image.Value[x, y]);
-
-                    rgbImage.R[x, y] = color.R;
-                    rgbImage.G[x, y] = color.G;
-                    rgbImage.B[x, y] = color.B;
-                }
-            }
-
-            return rgbImage;
         }
 
         public Color HSVPixelToColor(float hue, float saturation, float value)
@@ -103,39 +69,6 @@ namespace ImageEditor.Library.Converter
                 return Color.FromArgb(255, t, p, v);
             else
                 return Color.FromArgb(255, v, p, q);
-        }
-
-        public Bitmap RGBImageToBitmap(RGBImage image)
-        {
-            var bmp = new Bitmap(image.X, image.Y);
-
-            for(int x=0;x<image.X;x++)
-            {
-                for(int y=0;y<image.Y;y++)
-                {
-                    bmp.SetPixel(x, y, image.GetPixel(x, y));
-                }
-            }
-
-            return bmp;
-        }
-
-        public HSVImage RGBImageToHSVImage(RGBImage image)
-        {
-            var hsvImage = new HSVImage(image.X, image.Y);
-
-            for(int x=0; x<image.X; x++)
-            {
-                for(int y=0; y<image.Y; y++)
-                {
-                    var color = Color.FromArgb(image.R[x, y], image.G[x, y], image.B[x, y]);
-                    hsvImage.Hue[x, y] = color.GetHue();
-                    hsvImage.Saturation[x, y] = color.GetSaturation();
-                    hsvImage.Value[x, y] = color.GetBrightness();
-                }
-            }
-
-            return hsvImage;
         }
 
         private Color GetRgb(double r, double g, double b)
