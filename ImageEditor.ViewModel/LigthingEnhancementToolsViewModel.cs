@@ -62,10 +62,10 @@ namespace ImageEditor.ViewModel
             ImageProvider.EditedImage = LightingEnhancementTools.ChangeContrast(ImageProvider.EditedImage, _contrast);
         }
 
-        private async void ChangeBrightness(object sender, PropertyChangedEventArgs args)
+        private void ChangeBrightness(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Brightness") return;
-            ImageProvider.EditedImage = await LightingEnhancementTools.ChangeBrightness(ImageProvider.OriginalImage, _brightness);
+            ImageProvider.EditedImage = LightingEnhancementTools.ChangeBrightness(ImageProvider.OriginalImage, _brightness);
         }
     }
 }
