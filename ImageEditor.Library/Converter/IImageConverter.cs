@@ -10,6 +10,5 @@ namespace ImageEditor.Library.Converter
     {
         HSVImage BitmapToHSVImage(Bitmap bitmap);
         Bitmap HSVImageToBitmap(HSVImage image);
-        Color HSVPixelToColor(float hue, float saturation, float value);
     }
 }

@@ -9,71 +9,77 @@ namespace ImageEditor.Library.Converter
 {
     public class ImageConverter : IImageConverter
     {
-        public HSVImage BitmapToHSVImage(Bitmap bitmap)
-        {
-            float[,] hue = new float[bitmap.Width, bitmap.Height];
-            float[,] saturation = new float[bitmap.Width, bitmap.Height];
-            float[,] value = new float[bitmap.Width, bitmap.Height];
+        private IColorConverter ColorConverter { get; }
 
-            for(int x=0;x<bitmap.Width; x++)
+        public ImageConverter(IColorConverter colorConverter)
+        {
+            ColorConverter = colorConverter;
+        }
+
+        public HSVImage BitmapToHSVImage(Bitmap image)
+        {
+            var hsvImage = new HSVImage(image.Width, image.Height);
+
+            Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
+            System.Drawing.Imaging.BitmapData bitmapData =
+                image.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, image.PixelFormat);
+
+            IntPtr ptr = bitmapData.Scan0;
+            int bytes = Math.Abs(bitmapData.Stride) * image.Height;
+            byte[] rgbValues = new byte[bytes];
+
+            System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
+
+            for(int i=0; i<rgbValues.Length; i+=3)
             {
-                for(int y=0;y<bitmap.Height;y++)
-                {
-                    var color = bitmap.GetPixel(x, y);
-                    hue[x,y] = color.GetHue();
-                    saturation[x, y] = color.GetSaturation();
-                    value[x, y] = color.GetBrightness();
-                }
+                var rgbColor = new RGBColor();
+                rgbColor.Blue = rgbValues[i];
+                rgbColor.Green = rgbValues[i + 1];
+                rgbColor.Red = rgbValues[i + 2];
+
+                var height = (i / 3) % image.Width;
+                var width = (i / 3) - (height * image.Width);
+                var hsvColor = ColorConverter.RGBToHSV(rgbColor);
+
+                hsvImage.SetPixel(width, height, hsvColor);
             }
 
-            var image = new HSVImage(bitmap.Width, bitmap.Height, hue, saturation, value);
-            return image;
+            image.UnlockBits(bitmapData);
+
+            return hsvImage;
         }
 
         public Bitmap HSVImageToBitmap(HSVImage image)
         {
             var bitmap = new Bitmap(image.X, image.Y);
 
-            for(int x=0; x<image.X; x++)
+            Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+            System.Drawing.Imaging.BitmapData bitmapData =
+                bitmap.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            IntPtr ptr = bitmapData.Scan0;
+            int bytes = Math.Abs(bitmapData.Stride) * bitmap.Height;
+            byte[] rgbValues = new byte[bytes];
+
+            System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
+
+            for(int i=0;i<rgbValues.Length;i+=3)
             {
-                for(int y=0; y<image.Y; y++)
-                {
-                    var color = HSVPixelToColor(image.Hue[x, y], image.Saturation[x, y], image.Value[x, y]);
-                    bitmap.SetPixel(x, y, color);
-                }
+                var height = (i / 3) % image.X;
+                var width = (i / 3) - (height * image.X);
+
+                var hsvColor = image.GetPixel(width, height);
+                var rgbColor = ColorConverter.HSVToRGB(hsvColor);
+
+                rgbValues[i] = rgbColor.Blue;
+                rgbValues[i + 1] = rgbColor.Green;
+                rgbValues[i + 2] = rgbColor.Red;
             }
-            
+
+            System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, bytes);
+            bitmap.UnlockBits(bitmapData);
+
             return bitmap;
-        }
-
-        public Color HSVPixelToColor(float hue, float saturation, float value)
-        {
-            int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
-            double f = hue / 60 - Math.Floor(hue / 60);
-
-            value = value * 255;
-            int v = Convert.ToInt32(value);
-            int p = Convert.ToInt32(value * (1 - saturation));
-            int q = Convert.ToInt32(value * (1 - f * saturation));
-            int t = Convert.ToInt32(value * (1 - (1 - f) * saturation));
-
-            if (hi == 0)
-                return Color.FromArgb(255, v, t, p);
-            else if (hi == 1)
-                return Color.FromArgb(255, q, v, p);
-            else if (hi == 2)
-                return Color.FromArgb(255, p, v, t);
-            else if (hi == 3)
-                return Color.FromArgb(255, p, q, v);
-            else if (hi == 4)
-                return Color.FromArgb(255, t, p, v);
-            else
-                return Color.FromArgb(255, v, p, q);
-        }
-
-        private Color GetRgb(double r, double g, double b)
-        {
-            return Color.FromArgb(255, (byte)(r * 255.0), (byte)(g * 255.0), (byte)(b * 255.0));
         }
     }
 }
