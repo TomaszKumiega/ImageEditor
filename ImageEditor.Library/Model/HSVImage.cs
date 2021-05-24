@@ -29,5 +29,14 @@ namespace ImageEditor.Library.Model
             Saturation = saturation;
             Value = value;
         }
+
+        public void SetPixel(int x, int y, HSVColor color)
+        {
+            if (x > X || y > Y || x < 0 || y < 0) throw new ArgumentException("Index out of bounds");
+
+            Hue[x, y] = color.Hue;
+            Saturation[x, y] = color.Saturation;
+            Value[x, y] = color.Value;
+        }
     }
 }
