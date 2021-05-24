@@ -20,9 +20,9 @@ namespace ImageEditor.Windows
 
             #region Library
             builder.RegisterType<ChangeBrightnessAlgorithm>().As<IChangeBrightnessAlgorithm>();
-            builder.RegisterType<ContrastShrinkingAlgorithm>().As<IContrastShrinkingAlgorithm>();
             builder.RegisterType<ContrastStretchingAlgorithm>().As<IContrastStretchingAlgorithm>();
             builder.RegisterType<ImageConverter>().As<IImageConverter>();
+            builder.RegisterType<ColorConverter>().As<IColorConverter>();
             builder.RegisterType<ContrastRangeSelectionHelper>().As<IContrastRangeSelectionHelper>();
             builder.RegisterType<Flatten2DArrayHelper<float>>().As<IFlatten2DArrayHelper<float>>();
             builder.RegisterType<ImageIO>().As<IImageIO>();
