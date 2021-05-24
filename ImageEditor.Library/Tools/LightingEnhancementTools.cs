@@ -15,18 +15,16 @@ namespace ImageEditor.Library.Tools
         private IImageConverter Converter { get; }
         private IChangeBrightnessAlgorithm ChangeBrightnessAlgorithm { get; }
         private IContrastStretchingAlgorithm ContrastStretchingAlgorithm { get; }
-        private IContrastShrinkingAlgorithm ContrastShrinkingAlgorithm { get; }
         private IContrastRangeSelectionHelper ContrastRangeSelection { get; }
         private IFlatten2DArrayHelper<float> Flatten2DArrayHelper { get; }
 
         public LightingEnhancementTools(IImageConverter converter, IChangeBrightnessAlgorithm changeBrightnessAlgorithm, 
-            IContrastStretchingAlgorithm contrastStretchingAlgorithm, IContrastShrinkingAlgorithm contrastShrinkingAlgorithm, 
-            IContrastRangeSelectionHelper contrastRangeSelection, IFlatten2DArrayHelper<float> flatten2DArrayHelper)
+            IContrastStretchingAlgorithm contrastStretchingAlgorithm, IContrastRangeSelectionHelper contrastRangeSelection, 
+            IFlatten2DArrayHelper<float> flatten2DArrayHelper)
         {
             Converter = converter;
             ChangeBrightnessAlgorithm = changeBrightnessAlgorithm;
             ContrastStretchingAlgorithm = contrastStretchingAlgorithm;
-            ContrastShrinkingAlgorithm = contrastShrinkingAlgorithm;
             ContrastRangeSelection = contrastRangeSelection;
             Flatten2DArrayHelper = flatten2DArrayHelper;
         }
@@ -70,7 +68,7 @@ namespace ImageEditor.Library.Tools
                 float min = (float) (histogram.X.Min() + (maximumDiffrence * (contrast/100)));
                 float max = (float) (histogram.X.Max() - (maximumDiffrence * (contrast/100)));
 
-                var hsvResult = ContrastShrinkingAlgorithm.ShrinkContrast(hsvImage, min, max);
+                var hsvResult = ContrastStretchingAlgorithm.StretchContrast(hsvImage, min, max);
                 result = Converter.HSVImageToBitmap(hsvResult);
             }
 
