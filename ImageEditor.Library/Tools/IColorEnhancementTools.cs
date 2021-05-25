@@ -9,5 +9,6 @@ namespace ImageEditor.Library.Tools
     {
         Bitmap ChangeTint(Bitmap bitmap, float tint);
         Bitmap ChangeSaturation(Bitmap bitmap, float saturation);
+        Bitmap WhiteBalance(Bitmap image);
     }
 }

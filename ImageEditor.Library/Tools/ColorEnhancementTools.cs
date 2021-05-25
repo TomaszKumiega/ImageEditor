@@ -12,12 +12,15 @@ namespace ImageEditor.Library.Tools
         private IImageConverter Converter { get; }
         private IChangeTintAlgorithm ChangeTintAlgorithm { get; }
         private IChangeSaturationAlgorithm ChangeSaturationAlgorithm { get; }
+        private IWhiteBalanceAlgorithm WhiteBalanceAlgorithm { get; }
 
-        public ColorEnhancementTools(IImageConverter converter, IChangeTintAlgorithm changeTintAlgorithm, IChangeSaturationAlgorithm changeSaturationAlgorithm)
+        public ColorEnhancementTools(IImageConverter converter, IChangeTintAlgorithm changeTintAlgorithm, 
+            IChangeSaturationAlgorithm changeSaturationAlgorithm, IWhiteBalanceAlgorithm whiteBalanceAlgorithm)
         {
             Converter = converter;
             ChangeTintAlgorithm = changeTintAlgorithm;
             ChangeSaturationAlgorithm = changeSaturationAlgorithm;
+            WhiteBalanceAlgorithm = whiteBalanceAlgorithm;
         }
 
         public Bitmap ChangeTint(Bitmap bitmap, float tint)
@@ -36,6 +39,11 @@ namespace ImageEditor.Library.Tools
             var resultHSV = ChangeSaturationAlgorithm.ChangeSaturation(hsvImage, actualSaturation);
             var result = Converter.HSVImageToBitmap(resultHSV);
             return result;
+        }
+
+        public Bitmap WhiteBalance(Bitmap image)
+        {
+            return WhiteBalanceAlgorithm.WhiteBalance(image);
         }
     }
 }
