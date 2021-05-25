@@ -43,14 +43,10 @@ namespace ImageEditor.Library.Tools
 
             if(contrast>0)
             {
-                float min;
-                float max;
-
                 var hsvImage = Converter.BitmapToHSVImage(image);
-                ContrastRangeSelection.ContrastStretchingRangeSelection(new IntensityHistogram(Flatten2DArrayHelper.Flatten2DArray(hsvImage.Value)), out min, out max);
 
-                float actualMin = (contrast / 100) * min;
-                float actualMax = 1 - ((contrast / 100) * (1 - max));
+                float actualMin = 0-(contrast/400);
+                float actualMax = 1+(contrast/400);
 
                 var hsvResult = ContrastStretchingAlgorithm.StretchContrast(hsvImage, actualMin, actualMax);
 
@@ -60,14 +56,9 @@ namespace ImageEditor.Library.Tools
             {
                 contrast *= -1;
 
+                var min = 0 + (contrast / 400);
+                var max = 1 - (contrast / 400);
                 var hsvImage = Converter.BitmapToHSVImage(image);
-                var histogram = new IntensityHistogram(Flatten2DArrayHelper.Flatten2DArray(hsvImage.Value));
-
-                var maximumDiffrence = (histogram.X.Max() - histogram.X.Min()) * 0.05;
-
-                float min = (float) (histogram.X.Min() + (maximumDiffrence * (contrast/100)));
-                float max = (float) (histogram.X.Max() - (maximumDiffrence * (contrast/100)));
-
                 var hsvResult = ContrastStretchingAlgorithm.StretchContrast(hsvImage, min, max);
                 result = Converter.HSVImageToBitmap(hsvResult);
             }
