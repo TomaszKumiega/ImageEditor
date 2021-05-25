@@ -6,6 +6,11 @@ namespace ImageEditor.Library.Model
 {
     public class Histogram<T> : SortedDictionary<T, int>
     {
+        public Histogram()
+        {
+
+        }
+
         public Histogram(T[,] array)
         {
             InitializeHistogram(array);
