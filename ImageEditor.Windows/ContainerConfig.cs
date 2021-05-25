@@ -34,6 +34,8 @@ namespace ImageEditor.Windows
             builder.RegisterType<ColorEnhancementTools>().As<IColorEnhancementTools>();
             builder.RegisterType<EffectsTools>().As<IEffectsTools>();
             builder.RegisterType<ShapingTools>().As<IShapingTools>();
+            builder.RegisterType<WhiteBalanceAlgorithm>().As<IWhiteBalanceAlgorithm>();
+            builder.RegisterType<HistogramStatisticsHelper>().As<IHistogramStatisticsHelper>();
             #endregion
 
             #region ViewModel
