@@ -60,7 +60,7 @@ namespace ImageEditor.ViewModel
         private void ChangeContrast(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Contrast") return;
-            ImageProvider.EditedImage = LightingEnhancementTools.ChangeContrast(ImageProvider.EditedImage, _contrast);
+            ImageProvider.EditedImage = LightingEnhancementTools.ChangeContrast(ImageProvider.OriginalImage, _contrast);
         }
 
         private void ChangeBrightness(object sender, PropertyChangedEventArgs args)
