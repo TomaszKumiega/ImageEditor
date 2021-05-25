@@ -25,26 +25,30 @@ namespace ImageEditor.Library.Converter
                 image.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, image.PixelFormat);
 
             IntPtr ptr = bitmapData.Scan0;
-            int bytes = Math.Abs(bitmapData.Stride) * image.Height;
-            byte[] rgbValues = new byte[bytes];
+            int stride = bitmapData.Stride;
 
-            System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
-
-            for(int i=0; i<rgbValues.Length; i+=3)
+            unsafe
             {
-                var rgbColor = new RGBColor();
-                rgbColor.Blue = rgbValues[i];
-                rgbColor.Green = rgbValues[i + 1];
-                rgbColor.Red = rgbValues[i + 2];
+                byte* p = (byte*)(void*)ptr;
+                int offset = stride - image.Width * 3;
+                int width = image.Width * 3;
 
-                var height = (i / 3) % image.Width;
-                var width = (i / 3) - (height * image.Width);
-                var hsvColor = ColorConverter.RGBToHSV(rgbColor);
+                RGBColor rgbColor = new RGBColor();
+                for(int y=0; y<image.Height; ++y)
+                {
+                    for(int x=0; x<image.Width; ++x)
+                    {
+                        rgbColor.Blue = p[0];
+                        rgbColor.Green = p[1];
+                        rgbColor.Red = p[2];
 
-                hsvImage.SetPixel(width, height, hsvColor);
+                        var hsvColor = ColorConverter.RGBToHSV(rgbColor);
+                        hsvImage.SetPixel(x, y, hsvColor);
+                        p += 3;
+                    }
+                    p += offset;
+                }
             }
-
-            image.UnlockBits(bitmapData);
 
             return hsvImage;
         }
@@ -58,25 +62,31 @@ namespace ImageEditor.Library.Converter
                 bitmap.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
 
             IntPtr ptr = bitmapData.Scan0;
-            int bytes = Math.Abs(bitmapData.Stride) * bitmap.Height;
-            byte[] rgbValues = new byte[bytes];
+            int stride = bitmapData.Stride;
 
-            System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
-
-            for(int i=0;i<rgbValues.Length;i+=3)
+            unsafe
             {
-                var height = (i / 3) % image.X;
-                var width = (i / 3) - (height * image.X);
+                byte* p = (byte*)(void*)ptr;
+                int offset = stride - image.X * 3;
+                int width = image.X * 3;
 
-                var hsvColor = image.GetPixel(width, height);
-                var rgbColor = ColorConverter.HSVToRGB(hsvColor);
+                for(int y=0; y<image.Y; ++y)
+                {
+                    for(int x=0; x<image.X; ++x)
+                    {
+                        var hsvColor = image.GetPixel(x, y);
+                        var rgbColor = ColorConverter.HSVToRGB(hsvColor);
 
-                rgbValues[i] = rgbColor.Blue;
-                rgbValues[i + 1] = rgbColor.Green;
-                rgbValues[i + 2] = rgbColor.Red;
+                        p[0] = rgbColor.Blue;
+                        p[1] = rgbColor.Green;
+                        p[2] = rgbColor.Red;
+
+                        p += 3;
+                    }
+                    p += offset;
+                }
             }
 
-            System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, bytes);
             bitmap.UnlockBits(bitmapData);
 
             return bitmap;
