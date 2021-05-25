@@ -15,5 +15,15 @@ namespace ImageEditor.ViewModel.Commands
         {
             return new ResetChangesCommand(viewModel);
         }
+
+        public ChangeToGrayScaleCommand GetChangeToGrayScaleCommand(IEffectsToolsViewModel viewModel)
+        {
+            return new ChangeToGrayScaleCommand(viewModel);
+        }
+
+        public ChangeToNegativeCommand GetChangeToNegativeCommand(IEffectsToolsViewModel viewModel)
+        {
+            return new ChangeToNegativeCommand(viewModel);
+        }
     }
 }

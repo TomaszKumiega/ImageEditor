@@ -8,5 +8,7 @@ namespace ImageEditor.ViewModel.Commands
     {
         SaveImageCommand GetSaveImageCommand(IMenuViewModel viewModel);
         ResetChangesCommand GetResetChangesCommand(IMenuViewModel viewModel);
+        ChangeToGrayScaleCommand GetChangeToGrayScaleCommand(IEffectsToolsViewModel viewModel);
+        ChangeToNegativeCommand GetChangeToNegativeCommand(IEffectsToolsViewModel viewModel);
     }
 }
