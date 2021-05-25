@@ -25,5 +25,10 @@ namespace ImageEditor.ViewModel.Commands
         {
             return new ChangeToNegativeCommand(viewModel);
         }
+
+        public WhiteBalanceCommand GetWhiteBalanceCommand(IColorEnhancementToolsViewModel viewModel)
+        {
+            return new WhiteBalanceCommand(viewModel);
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace ImageEditor.ViewModel.Commands
         ResetChangesCommand GetResetChangesCommand(IMenuViewModel viewModel);
         ChangeToGrayScaleCommand GetChangeToGrayScaleCommand(IEffectsToolsViewModel viewModel);
         ChangeToNegativeCommand GetChangeToNegativeCommand(IEffectsToolsViewModel viewModel);
+        WhiteBalanceCommand GetWhiteBalanceCommand(IColorEnhancementToolsViewModel viewModel);
     }
 }
