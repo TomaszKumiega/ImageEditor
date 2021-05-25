@@ -25,5 +25,17 @@ namespace ImageEditor.Library.Model
                 }
             }
         }
+
+        public int CountAll()
+        {
+            int all = 0;
+
+            foreach(var t in this)
+            {
+                all += t.Value;
+            }
+
+            return all;
+        }
     }
 }
