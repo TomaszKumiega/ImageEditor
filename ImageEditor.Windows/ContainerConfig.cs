@@ -23,7 +23,6 @@ namespace ImageEditor.Windows
             builder.RegisterType<ContrastStretchingAlgorithm>().As<IContrastStretchingAlgorithm>();
             builder.RegisterType<ImageConverter>().As<IImageConverter>();
             builder.RegisterType<ColorConverter>().As<IColorConverter>();
-            builder.RegisterType<Flatten2DArrayHelper<float>>().As<IFlatten2DArrayHelper<float>>();
             builder.RegisterType<ImageIO>().As<IImageIO>();
             builder.RegisterType<LightingEnhancementTools>().As<ILightingEnhancementTools>();
             builder.RegisterType<ChangeTintAlgorithm>().As<IChangeTintAlgorithm>();
