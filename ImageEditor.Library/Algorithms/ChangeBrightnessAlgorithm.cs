@@ -22,7 +22,7 @@ namespace ImageEditor.Library.Algorithms
 
             System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
 
-            for (int i=0; i<rgbValues.Length; i++)
+            for (int i=0; i<rgbValues.Length-2; i++)
             {
                 var val = (int) rgbValues[i];
                 val += brightnessDifference;

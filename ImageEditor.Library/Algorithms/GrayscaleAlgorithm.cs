@@ -21,7 +21,7 @@ namespace ImageEditor.Library.Algorithms
 
             System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
 
-            for(int i=0; i<rgbValues.Length; i+=3)
+            for(int i=0; i<rgbValues.Length-2; i+=3)
             {
                 rgbValues[i] = rgbValues[i + 1] = rgbValues[i + 2] = (byte)(.299 * rgbValues[i] + .587 * rgbValues[i + 1] + .114 * rgbValues[i + 2]);
             }
