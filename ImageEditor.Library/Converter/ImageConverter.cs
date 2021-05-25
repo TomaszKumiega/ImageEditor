@@ -50,6 +50,8 @@ namespace ImageEditor.Library.Converter
                 }
             }
 
+            image.UnlockBits(bitmapData);
+
             return hsvImage;
         }
 
