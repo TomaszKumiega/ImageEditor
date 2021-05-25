@@ -19,7 +19,7 @@ namespace ImageEditor.Library.Algorithms
 
         public Bitmap WhiteBalance(Bitmap image)
         {
-            float percentage = 0.05f;
+            float percentage = 99.3f;
             var rHistogram = new Histogram<byte>();
             var gHistogram = new Histogram<byte>();
             var bHistogram = new Histogram<byte>();
@@ -36,7 +36,7 @@ namespace ImageEditor.Library.Algorithms
 
             System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
 
-            for(int i=0; i<rgbValues.Length; i+=3)
+            for(int i=0; i<rgbValues.Length-2; i+=3)
             {
                 bHistogram.AddElement(rgbValues[i]);
                 gHistogram.AddElement(rgbValues[i + 1]);
@@ -56,15 +56,18 @@ namespace ImageEditor.Library.Algorithms
 
             int val = 0;
 
-            for (int i = 0; i < rgbValues.Length; i += 3)
+            for (int i = 0; i < rgbValues.Length-2; i += 3)
             {
                 val = rA * rgbValues[i+2] + rB;
+                val = val > 255 ? 255 : val < 0 ? 0 : val;
                 rgbValues[i+2] = (byte)val;
 
                 val = gA * rgbValues[i + 1] + gB;
+                val = val > 255 ? 255 : val < 0 ? 0 : val;
                 rgbValues[i + 1] = (byte)val;
 
                 val = bA * rgbValues[i] + bB;
+                val = val > 255 ? 255 : val < 0 ? 0 : val;
                 rgbValues[i] = (byte)val;
             }
 
