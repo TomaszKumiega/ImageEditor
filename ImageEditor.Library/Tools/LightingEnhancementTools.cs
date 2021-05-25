@@ -15,17 +15,14 @@ namespace ImageEditor.Library.Tools
         private IImageConverter Converter { get; }
         private IChangeBrightnessAlgorithm ChangeBrightnessAlgorithm { get; }
         private IContrastStretchingAlgorithm ContrastStretchingAlgorithm { get; }
-        private IContrastRangeSelectionHelper ContrastRangeSelection { get; }
         private IFlatten2DArrayHelper<float> Flatten2DArrayHelper { get; }
 
         public LightingEnhancementTools(IImageConverter converter, IChangeBrightnessAlgorithm changeBrightnessAlgorithm, 
-            IContrastStretchingAlgorithm contrastStretchingAlgorithm, IContrastRangeSelectionHelper contrastRangeSelection, 
-            IFlatten2DArrayHelper<float> flatten2DArrayHelper)
+            IContrastStretchingAlgorithm contrastStretchingAlgorithm, IFlatten2DArrayHelper<float> flatten2DArrayHelper)
         {
             Converter = converter;
             ChangeBrightnessAlgorithm = changeBrightnessAlgorithm;
             ContrastStretchingAlgorithm = contrastStretchingAlgorithm;
-            ContrastRangeSelection = contrastRangeSelection;
             Flatten2DArrayHelper = flatten2DArrayHelper;
         }
 
