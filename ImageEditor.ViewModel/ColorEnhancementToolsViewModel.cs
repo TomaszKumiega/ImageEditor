@@ -66,7 +66,7 @@ namespace ImageEditor.ViewModel
         public void ChangeSaturation(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Saturation") return;
-            ImageProvider.EditedImage = ColorEnhancementTools.ChangeSaturation(ImageProvider.OriginalImage, _tint);
+            ImageProvider.EditedImage = ColorEnhancementTools.ChangeSaturation(ImageProvider.OriginalImage, _saturation);
         }
     }
 }
