@@ -51,6 +51,7 @@ namespace ImageEditor.Windows
             builder.RegisterType<MenuView>().AsSelf();
             builder.RegisterType<LightingEnhancementToolsUserControl>().AsSelf();
             builder.RegisterType<ColorEnhancementToolsUserControl>().AsSelf();
+            builder.RegisterType<EffectsToolsUserControl>().AsSelf();
             #endregion
 
             #region Windows
