@@ -20,5 +20,29 @@
         <!--Title Bar-->
         <Rectangle x:Name="RectangleTitleBarBackground" Fill="#202225" Grid.ColumnSpan="5" MouseDown="RectangleTitleBarBackground_MouseDown"/>
         <TextBlock x:Name="TextBlockTitleBar" Margin="5,0,0,0"  Text="Image Editor" FontFamily="Segoe UI" FontSize="18" Foreground="#949597" VerticalAlignment="Bottom" />
+
+        <TabControl x:Name="ToolsTabControl" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1" Background="Transparent">
+            <TabItem x:Name="LightTabItem">
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="Light"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem x:Name="ColorTabItem">
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="Color"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem x:Name="EffectsTabItem">
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="Effects"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
