@@ -24,12 +24,15 @@ namespace ImageEditor.Windows
         private ImageViewUserControl ImageView { get; }
         private MenuView MenuView { get; }
         private LightingEnhancementToolsUserControl LightingEnhancementTools { get; }
+        private ColorEnhancementToolsUserControl ColorEnhancementTools { get; }
 
-        public MainWindow(ImageViewUserControl imageView, MenuView menuView, LightingEnhancementToolsUserControl lightingEnhancementTools)
+        public MainWindow(ImageViewUserControl imageView, MenuView menuView, 
+            LightingEnhancementToolsUserControl lightingEnhancementTools, ColorEnhancementToolsUserControl colorEnhancementTools)
         {
             ImageView = imageView;
             MenuView = menuView;
             LightingEnhancementTools = lightingEnhancementTools;
+            ColorEnhancementTools = colorEnhancementTools;
             InitializeComponent();
             AddControlsToTheView();
         }
@@ -51,6 +54,10 @@ namespace ImageEditor.Windows
             LightTabItem.Content = LightingEnhancementTools;
             LightingEnhancementTools.HorizontalAlignment = HorizontalAlignment.Stretch;
             LightingEnhancementTools.VerticalAlignment = VerticalAlignment.Stretch;
+
+            ColorTabItem.Content = ColorEnhancementTools;
+            ColorEnhancementTools.HorizontalAlignment = HorizontalAlignment.Stretch;
+            ColorEnhancementTools.VerticalAlignment = VerticalAlignment.Stretch;
         }
 
         private void RectangleTitleBarBackground_MouseDown(object sender, MouseButtonEventArgs e)
