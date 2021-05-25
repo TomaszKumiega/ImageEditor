@@ -4,10 +4,26 @@ using System.Text;
 
 namespace ImageEditor.Library.Model
 {
-    public abstract class Histogram<XType>
+    public class Histogram<T> : SortedDictionary<T, int>
     {
-        public XType[] X { get; set; }
-        public int[] Y { get; set; }
-        public int NumberOfValues { get; set; }
+        public Histogram(T[,] array)
+        {
+            InitializeHistogram(array);
+        }
+
+        private void InitializeHistogram(T[,] array)
+        {
+            foreach(var t in array)
+            {
+                if(ContainsKey(t))
+                {
+                    this[t]++;
+                }
+                else
+                {
+                    Add(t, 1);
+                }
+            }
+        }
     }
 }
