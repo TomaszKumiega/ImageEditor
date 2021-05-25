@@ -40,8 +40,8 @@ namespace ImageEditor.Library.Tools
             {
                 var hsvImage = Converter.BitmapToHSVImage(image);
 
-                float actualMin = 0-(contrast/400);
-                float actualMax = 1+(contrast/400);
+                float actualMin = 0+(contrast/400);
+                float actualMax = 1-(contrast/400);
 
                 var hsvResult = ContrastStretchingAlgorithm.StretchContrast(hsvImage, actualMin, actualMax);
 
@@ -50,9 +50,8 @@ namespace ImageEditor.Library.Tools
             else if(contrast<0)
             {
                 contrast *= -1;
-
-                var min = 0 + (contrast / 400);
-                var max = 1 - (contrast / 400);
+                var min = 0 - (contrast / 400);
+                var max = 1 + (contrast / 400);
                 var hsvImage = Converter.BitmapToHSVImage(image);
                 var hsvResult = ContrastStretchingAlgorithm.StretchContrast(hsvImage, min, max);
                 result = Converter.HSVImageToBitmap(hsvResult);

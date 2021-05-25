@@ -18,7 +18,7 @@ namespace ImageEditor.Library.Algorithms
                     result.Hue[x, y] = image.Hue[x, y];
                     result.Saturation[x, y] = image.Saturation[x, y];
 
-                    result.Value[x,y] = (max-min)*image.Value[x, y] - min;
+                    result.Value[x,y] = (image.Value[x, y] - min) / (max - min);
 
                     if (result.Value[x, y] > 1)
                     {
