@@ -1,8 +1,10 @@
 ﻿using ImageEditor.Library.Tools;
+using ImageEditor.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
 
 namespace ImageEditor.ViewModel
 {
@@ -16,10 +18,13 @@ namespace ImageEditor.ViewModel
         private IColorEnhancementTools ColorEnhancementTools { get; }
         private IImageProvider ImageProvider { get; }
 
-        public ColorEnhancementToolsViewModel(IColorEnhancementTools colorEnhancementTools, IImageProvider imageProvider)
+        public ICommand WhiteBalanceCommand { get; }
+
+        public ColorEnhancementToolsViewModel(IColorEnhancementTools colorEnhancementTools, IImageProvider imageProvider, ICommandFactory commandFactory)
         {
             ColorEnhancementTools = colorEnhancementTools;
             ImageProvider = imageProvider;
+            WhiteBalanceCommand = commandFactory.GetWhiteBalanceCommand(this);
             PropertyChanged += ChangeTint;
             PropertyChanged += ChangeSaturation;
             _tint = 0;
@@ -67,6 +72,11 @@ namespace ImageEditor.ViewModel
         {
             if (args.PropertyName != "Saturation") return;
             ImageProvider.EditedImage = ColorEnhancementTools.ChangeSaturation(ImageProvider.OriginalImage, _saturation);
+        }
+
+        public void WhiteBalance()
+        {
+            ImageProvider.EditedImage = ColorEnhancementTools.WhiteBalance(ImageProvider.OriginalImage);
         }
     }
 }
