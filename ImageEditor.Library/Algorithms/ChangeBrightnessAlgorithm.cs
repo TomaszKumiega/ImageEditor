@@ -37,5 +37,23 @@ namespace ImageEditor.Library.Algorithms
 
             return clonedImage;
         }
+
+        public HSVImage ChangeBrightness(HSVImage image, float brightnessDiffrence)
+        {
+            var hsvImage = new HSVImage(image.X, image.Y);
+
+            for(int x=0;x<image.X;++x)
+            {
+                for(int y=0;y<image.Y;++y)
+                {
+                    var hsvColor = image.GetPixel(x, y);
+                    hsvColor.Value += brightnessDiffrence;
+                    hsvColor.Value = hsvColor.Value > 1 ? 1 : hsvColor.Value < 0 ? 0 : hsvColor.Value;
+                    hsvImage.SetPixel(x, y, hsvColor);
+                }
+            }
+
+            return hsvImage;
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace ImageEditor.Library.Algorithms
     public interface IChangeBrightnessAlgorithm
     {
         Bitmap ChangeBrightness(Bitmap image, int brightnessDifference);
+        HSVImage ChangeBrightness(HSVImage image, float brightnessDiffrence);
     }
 }
