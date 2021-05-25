@@ -31,6 +31,18 @@ namespace ImageEditor.Library.Model
             }
         }
 
+        public void AddElement(T value)
+        {
+            if(ContainsKey(value))
+            {
+                this[value]++;
+            }
+            else
+            {
+                Add(value, 1);
+            }
+        }
+
         public int CountAll()
         {
             int all = 0;
