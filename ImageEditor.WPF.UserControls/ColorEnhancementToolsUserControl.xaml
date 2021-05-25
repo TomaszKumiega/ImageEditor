@@ -30,5 +30,9 @@
         <TextBlock x:Name="Saturation" Margin="15,0,10,0"  Text="Saturation" Grid.Column="0" Grid.Row="3" FontSize="17" FontFamily="Segoe Ui" Foreground="WhiteSmoke"/>
         <Slider x:Name="TintSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="1" Maximum="100" Minimum="-100" Value="{Binding Path=Tint, Delay=500}" SmallChange="1"/>
         <Slider x:Name="SaturationSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="3" Maximum="100" Minimum="-100" Value="{Binding Path=Saturation, Delay=500}" SmallChange="1"/>
+
+        <Button x:Name="WhiteBalanceButton" Grid.ColumnSpan="2" Grid.Row="5" Width="200" Command="{Binding WhiteBalanceCommand}">
+            <TextBlock x:Name="WhitebalanceTextBlock" Margin="15,0,10,0"  Text="White Balance" Grid.Column="0" Grid.Row="3" FontSize="17" FontFamily="Segoe Ui" />
+        </Button>
     </Grid>
 </UserControl>
