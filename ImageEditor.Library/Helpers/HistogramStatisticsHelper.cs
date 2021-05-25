@@ -11,7 +11,7 @@ namespace ImageEditor.Library.Helpers
         public (T min, T max) FindBoundariesOfXPercentage<T>(Histogram<T> histogram, float percentage)
         {
             var allValues = histogram.CountAll();
-            var numberOfValuesToCut = (int)(allValues - (allValues * percentage));
+            var numberOfValuesToCut = (int)(allValues - (allValues * (percentage/100)));
             int cutValues = 0;
             T min = histogram.Keys.First();
             T max = histogram.Keys.Last();
