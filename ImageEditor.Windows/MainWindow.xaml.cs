@@ -48,12 +48,9 @@ namespace ImageEditor.Windows
             Grid.SetColumn(MenuView, 0);
             Grid.SetRow(MenuView, 2);
 
-            MainGrid.Children.Add(LightingEnhancementTools);
+            LightTabItem.Content = LightingEnhancementTools;
             LightingEnhancementTools.HorizontalAlignment = HorizontalAlignment.Stretch;
             LightingEnhancementTools.VerticalAlignment = VerticalAlignment.Stretch;
-            Grid.SetColumn(LightingEnhancementTools, 1);
-            Grid.SetRow(LightingEnhancementTools, 1);
-            Grid.SetRowSpan(LightingEnhancementTools, 2);
         }
 
         private void RectangleTitleBarBackground_MouseDown(object sender, MouseButtonEventArgs e)
