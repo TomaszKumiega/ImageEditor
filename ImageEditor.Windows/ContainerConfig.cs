@@ -27,6 +27,13 @@ namespace ImageEditor.Windows
             builder.RegisterType<Flatten2DArrayHelper<float>>().As<IFlatten2DArrayHelper<float>>();
             builder.RegisterType<ImageIO>().As<IImageIO>();
             builder.RegisterType<LightingEnhancementTools>().As<ILightingEnhancementTools>();
+            builder.RegisterType<ChangeTintAlgorithm>().As<IChangeTintAlgorithm>();
+            builder.RegisterType<ChangeSaturationAlgorithm>().As<IChangeSaturationAlgorithm>();
+            builder.RegisterType<GrayscaleAlgorithm>().As<IGrayscaleAlgorithm>();
+            builder.RegisterType<NegativeAlgorithm>().As<INegativeAlgorithm>();
+            builder.RegisterType<ColorEnhancementTools>().As<IColorEnhancementTools>();
+            builder.RegisterType<EffectsTools>().As<IEffectsTools>();
+            builder.RegisterType<ShapingTools>().As<IShapingTools>();
             #endregion
 
             #region ViewModel
@@ -35,12 +42,15 @@ namespace ImageEditor.Windows
             builder.RegisterType<MenuViewModel>().As<IMenuViewModel>();
             builder.RegisterType<LigthingEnhancementToolsViewModel>().As<ILightingEnhancementToolsViewModel>();
             builder.RegisterType<CommandFactory>().As<ICommandFactory>();
+            builder.RegisterType<ColorEnhancementToolsViewModel>().As<IColorEnhancementToolsViewModel>();
+            builder.RegisterType<EffectsToolsViewModel>().As<IEffectsToolsViewModel>();
             #endregion
 
             #region UserControls
             builder.RegisterType<ImageViewUserControl>().AsSelf();
             builder.RegisterType<MenuView>().AsSelf();
             builder.RegisterType<LightingEnhancementToolsUserControl>().AsSelf();
+            builder.RegisterType<ColorEnhancementToolsUserControl>().AsSelf();
             #endregion
 
             #region Windows
