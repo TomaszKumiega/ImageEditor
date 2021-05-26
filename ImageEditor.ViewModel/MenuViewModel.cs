@@ -28,6 +28,7 @@ namespace ImageEditor.ViewModel
             ImageProvider.OriginalImage = ImageIO.LoadImage(path);
             ImageProvider.EditedImage = (Bitmap) ImageProvider.OriginalImage.Clone();
             ImageProvider.ImagePath = path;
+            ImageProvider.Reset();
         }
 
         public void Reset()

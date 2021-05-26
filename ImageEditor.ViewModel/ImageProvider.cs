@@ -48,6 +48,7 @@ namespace ImageEditor.ViewModel
         {
             EditedImage = (Bitmap)OriginalImage.Clone();
             ResetEvent?.Invoke(this, new EventArgs());
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EditedImage"));
         }
 
         private void OnPropertyChanged(string name)
