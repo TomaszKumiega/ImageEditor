@@ -27,6 +27,7 @@ namespace ImageEditor.ViewModel
             WhiteBalanceCommand = commandFactory.GetWhiteBalanceCommand(this);
             PropertyChanged += ChangeTint;
             PropertyChanged += ChangeSaturation;
+            ImageProvider.ResetEvent += OnReset;
             _tint = 0;
             _saturation = 0;
         }
@@ -55,6 +56,12 @@ namespace ImageEditor.ViewModel
                     OnPropertyChanged("Saturation");
                 }
             }
+        }
+
+        private void OnReset(object sender, EventArgs args)
+        {
+            Saturation = 0;
+            Tint = 0;
         }
 
         private void OnPropertyChanged(string name)

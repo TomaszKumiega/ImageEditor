@@ -32,7 +32,7 @@ namespace ImageEditor.ViewModel
 
         public void Reset()
         {
-            ImageProvider.EditedImage = (Bitmap) ImageProvider.OriginalImage.Clone();
+            ImageProvider.Reset();
         }
 
         public void SaveImage()

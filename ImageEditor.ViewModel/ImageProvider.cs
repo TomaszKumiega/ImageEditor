@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageEditor.ViewModel.Events;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -41,6 +42,13 @@ namespace ImageEditor.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public event ResetEventHandler ResetEvent;
+
+        public void Reset()
+        {
+            EditedImage = (Bitmap)OriginalImage.Clone();
+            ResetEvent?.Invoke(this, new EventArgs());
+        }
 
         private void OnPropertyChanged(string name)
         {

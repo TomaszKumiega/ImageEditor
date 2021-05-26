@@ -48,8 +48,15 @@ namespace ImageEditor.ViewModel
             ImageProvider = imageProvider;
             PropertyChanged += ChangeBrightness;
             PropertyChanged += ChangeContrast;
+            ImageProvider.ResetEvent += OnReset;
             _contrast = 0;
             _brightness = 0;
+        }
+
+        private void OnReset(object sender, EventArgs args)
+        {
+            Contrast = 0;
+            Brightness = 0;
         }
 
         private void OnPropertyChanged(string name)
