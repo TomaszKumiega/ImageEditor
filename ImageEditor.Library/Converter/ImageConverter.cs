@@ -57,7 +57,7 @@ namespace ImageEditor.Library.Converter
 
         public Bitmap HSVImageToBitmap(HSVImage image)
         {
-            var bitmap = new Bitmap(image.X, image.Y);
+            var bitmap = new Bitmap(image.Width, image.Height);
 
             Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             System.Drawing.Imaging.BitmapData bitmapData =
@@ -69,12 +69,12 @@ namespace ImageEditor.Library.Converter
             unsafe
             {
                 byte* p = (byte*)(void*)ptr;
-                int offset = stride - image.X * 3;
-                int width = image.X * 3;
+                int offset = stride - image.Width * 3;
+                int width = image.Width * 3;
 
-                for(int y=0; y<image.Y; ++y)
+                for(int y=0; y<image.Height; ++y)
                 {
-                    for(int x=0; x<image.X; ++x)
+                    for(int x=0; x<image.Width; ++x)
                     {
                         var hsvColor = image.GetPixel(x, y);
                         var rgbColor = ColorConverter.HSVToRGB(hsvColor);

@@ -9,11 +9,11 @@ namespace ImageEditor.Library.Algorithms
     {
         public HSVImage StretchContrast(HSVImage image, float min, float max)
         {
-            var result = new HSVImage(image.X, image.Y);
+            var result = new HSVImage(image.Width, image.Height);
 
-            for (int x = 0; x < image.X; x++) 
+            for (int x = 0; x < image.Width; x++) 
             {
-                for (int y = 0; y < image.Y; y++)
+                for (int y = 0; y < image.Height; y++)
                 {
                     result.Hue[x, y] = image.Hue[x, y];
                     result.Saturation[x, y] = image.Saturation[x, y];

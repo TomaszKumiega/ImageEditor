@@ -9,11 +9,11 @@ namespace ImageEditor.Library.Algorithms
     {
         public HSVImage ChangeSaturation(HSVImage image, float saturationGain)
         {
-            var hsvImage = new HSVImage(image.X, image.Y);
+            var hsvImage = new HSVImage(image.Width, image.Height);
 
-            for (int x = 0; x < image.X; ++x)
+            for (int x = 0; x < image.Width; ++x)
             {
-                for (int y = 0; y < image.Y; ++y)
+                for (int y = 0; y < image.Height; ++y)
                 {
                     var pixel = image.GetPixel(x, y);
                     var sat = pixel.Saturation + saturationGain;
