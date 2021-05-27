@@ -26,8 +26,7 @@ namespace ImageEditor.Library.Algorithms
             {
                 var val = (int) rgbValues[i];
                 val += brightnessDifference;
-                if (val > 255) val = 255;
-                if (val < 0) val = 0;
+                val = val > 255 ? 255 : val < 0 ? 0 : val;
                 rgbValues[i] = (byte) val;
             }
 
