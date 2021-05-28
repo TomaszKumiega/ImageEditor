@@ -14,6 +14,7 @@ namespace ImageEditor.ViewModel
         string ImagePath { get; set; }
         void Reset();
         void ApplyOperation(Operation op);
+        void RemoveOperation(Operation op);
 
         event PropertyChangedEventHandler PropertyChanged;
         event ResetEventHandler ResetEvent;
