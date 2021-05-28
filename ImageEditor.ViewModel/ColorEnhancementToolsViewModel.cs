@@ -45,7 +45,6 @@ namespace ImageEditor.ViewModel
                 {
                     _tint = value;
                     ApplyTint();
-                    OnPropertyChanged("Tint");
                 }
             }
         }
@@ -63,15 +62,16 @@ namespace ImageEditor.ViewModel
                 {
                     _saturation = value;
                     ApplySaturation();
-                    OnPropertyChanged("Saturation");
                 }
             }
         }
 
         private void OnReset(object sender, EventArgs args)
         {
-            Saturation = 0;
-            Tint = 0;
+            _saturation = 0;
+            _tint = 0;
+            OnPropertyChanged("Tint");
+            OnPropertyChanged("Saturation");
         }
 
         private void OnPropertyChanged(string name)

@@ -30,7 +30,6 @@ namespace ImageEditor.ViewModel
                 {
                     _contrast = value;
                     ApplyContrast();
-                    OnPropertyChanged("Contrast");
                 }
             }
         }
@@ -49,7 +48,6 @@ namespace ImageEditor.ViewModel
                 {
                     _brightness = value;
                     ApplyBrightness();
-                    OnPropertyChanged("Brightness");
                 }
             }
         }
@@ -68,6 +66,8 @@ namespace ImageEditor.ViewModel
         {
             _contrast = 0;
             _brightness = 0;
+            OnPropertyChanged("Contrast");
+            OnPropertyChanged("Brightness");
         }
 
         private void OnPropertyChanged(string name)
