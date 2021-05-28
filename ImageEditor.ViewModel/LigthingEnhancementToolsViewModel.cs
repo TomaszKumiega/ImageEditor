@@ -59,6 +59,7 @@ namespace ImageEditor.ViewModel
             LightingEnhancementTools = lightingEnhancementTools;
             ImageProvider = imageProvider;
             ImageProvider.ResetEvent += OnReset;
+            ImageProvider.ApplyEvent += OnApply;
             _contrast = 0;
             _brightness = 0;
         }
