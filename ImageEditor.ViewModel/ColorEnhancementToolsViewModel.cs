@@ -1,5 +1,6 @@
 ﻿using ImageEditor.Library.Tools;
 using ImageEditor.ViewModel.Commands;
+using ImageEditor.ViewModel.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,9 +26,8 @@ namespace ImageEditor.ViewModel
             ColorEnhancementTools = colorEnhancementTools;
             ImageProvider = imageProvider;
             WhiteBalanceCommand = commandFactory.GetWhiteBalanceCommand(this);
-            PropertyChanged += ChangeTint;
-            PropertyChanged += ChangeSaturation;
             ImageProvider.ResetEvent += OnReset;
+            ImageProvider.ApplyEvent += OnApply;
             _tint = 0;
             _saturation = 0;
         }
@@ -37,9 +37,14 @@ namespace ImageEditor.ViewModel
             get => _tint;
             set
             {
-                if(value != _tint)
+                if(value == 0 && _tint != 0)
+                {
+                    RemoveTint();
+                }
+                else if(value != _tint)
                 {
                     _tint = value;
+                    ApplyTint();
                     OnPropertyChanged("Tint");
                 }
             }
@@ -50,9 +55,14 @@ namespace ImageEditor.ViewModel
             get => _saturation;
             set
             {
-                if(value != _saturation)
+                if(value == 0 && _saturation != 0)
+                {
+                    RemoveSaturation();
+                }
+                else if(value != _saturation)
                 {
                     _saturation = value;
+                    ApplySaturation();
                     OnPropertyChanged("Saturation");
                 }
             }
@@ -69,15 +79,51 @@ namespace ImageEditor.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public void ChangeTint(object sender, PropertyChangedEventArgs args)
+        private void ApplyTint()
         {
-            if (args.PropertyName != "Tint") return;
+            ImageProvider.ApplyOperation(Operation.Tint);
+        }
+
+        private void ApplySaturation()
+        {
+            ImageProvider.ApplyOperation(Operation.Saturation);
+        }
+
+        private void RemoveTint()
+        {
+            ImageProvider.RemoveOperation(Operation.Tint);
+        }
+
+        private void RemoveSaturation()
+        {
+            ImageProvider.RemoveOperation(Operation.Saturation);
+        }
+
+        private void RemoveWhiteBalance()
+        {
+            ImageProvider.RemoveOperation(Operation.WhiteBalance);
+        }
+
+        private void OnApply(object sender, ApplyEventArgs args)
+        {
+            switch(args.Operation)
+            {
+                case Operation.WhiteBalance: WhiteBalance();
+                    break;
+                case Operation.Tint: ChangeTint();
+                    break;
+                case Operation.Saturation: ChangeSaturation();
+                    break;
+            }
+        }
+
+        private void ChangeTint()
+        {
             ImageProvider.EditedImage = ColorEnhancementTools.ChangeTint(ImageProvider.EditedImage, _tint);
         }
 
-        public void ChangeSaturation(object sender, PropertyChangedEventArgs args)
+        private void ChangeSaturation()
         {
-            if (args.PropertyName != "Saturation") return;
             ImageProvider.EditedImage = ColorEnhancementTools.ChangeSaturation(ImageProvider.EditedImage, _saturation);
         }
 
