@@ -60,6 +60,7 @@ namespace ImageEditor.ViewModel
         
         private void ReapplyAll()
         {
+            EditedImage = OriginalImage.Clone(new Rectangle(0, 0, OriginalImage.Width, OriginalImage.Height), System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             foreach(var t in AppliedOperations)
             {
                 ApplyEvent?.Invoke(this, new ApplyEventArgs(t));
@@ -71,6 +72,7 @@ namespace ImageEditor.ViewModel
             if(AppliedOperations.Contains(op))
             {
                 AppliedOperations.Remove(op);
+                ReapplyAll();
             }
         }
 
