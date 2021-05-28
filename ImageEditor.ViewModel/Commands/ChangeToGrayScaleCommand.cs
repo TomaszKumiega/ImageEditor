@@ -5,13 +5,13 @@ using System.Windows.Input;
 
 namespace ImageEditor.ViewModel.Commands
 {
-    public class ChangeToGrayScaleCommand : ICommand
+    public class ChangeToGrayscaleCommand : ICommand
     {
         private IEffectsToolsViewModel ViewModel { get; }
 
         public event EventHandler CanExecuteChanged;
 
-        public ChangeToGrayScaleCommand(IEffectsToolsViewModel viewModel)
+        public ChangeToGrayscaleCommand(IEffectsToolsViewModel viewModel)
         {
             ViewModel = viewModel;
         }
