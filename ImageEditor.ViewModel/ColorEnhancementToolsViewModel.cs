@@ -89,6 +89,11 @@ namespace ImageEditor.ViewModel
             ImageProvider.ApplyOperation(Operation.Saturation);
         }
 
+        public void ApplyWhiteBalance()
+        {
+            ImageProvider.ApplyOperation(Operation.WhiteBalance);
+        }
+
         private void RemoveTint()
         {
             ImageProvider.RemoveOperation(Operation.Tint);
@@ -126,10 +131,9 @@ namespace ImageEditor.ViewModel
         {
             ImageProvider.EditedImage = ColorEnhancementTools.ChangeSaturation(ImageProvider.EditedImage, _saturation);
         }
-
-        public void WhiteBalance()
+        private void WhiteBalance()
         {
             ImageProvider.EditedImage = ColorEnhancementTools.WhiteBalance(ImageProvider.EditedImage);
-        }
+        }        
     }
 }

@@ -11,6 +11,6 @@ namespace ImageEditor.ViewModel
         float Tint { get; set; }
         float Saturation { get; set; }
 
-        void WhiteBalance();
+        void ApplyWhiteBalance();
     }
 }

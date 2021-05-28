@@ -22,7 +22,7 @@ namespace ImageEditor.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            ViewModel.WhiteBalance();
+            ViewModel.ApplyWhiteBalance();
         }
     }
 }
