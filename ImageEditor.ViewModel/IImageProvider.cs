@@ -13,8 +13,10 @@ namespace ImageEditor.ViewModel
         Bitmap EditedImage { get; set; }
         string ImagePath { get; set; }
         void Reset();
+        void ApplyOperation(Operation op);
 
         event PropertyChangedEventHandler PropertyChanged;
         event ResetEventHandler ResetEvent;
+        event ApplyEventHandler ApplyEvent;
     }
 }
