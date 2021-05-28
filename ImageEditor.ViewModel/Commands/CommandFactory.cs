@@ -16,9 +16,9 @@ namespace ImageEditor.ViewModel.Commands
             return new ResetChangesCommand(viewModel);
         }
 
-        public ChangeToGrayScaleCommand GetChangeToGrayScaleCommand(IEffectsToolsViewModel viewModel)
+        public ChangeToGrayscaleCommand GetChangeToGrayScaleCommand(IEffectsToolsViewModel viewModel)
         {
-            return new ChangeToGrayScaleCommand(viewModel);
+            return new ChangeToGrayscaleCommand(viewModel);
         }
 
         public ChangeToNegativeCommand GetChangeToNegativeCommand(IEffectsToolsViewModel viewModel)
