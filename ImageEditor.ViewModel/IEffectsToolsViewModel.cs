@@ -10,7 +10,7 @@ namespace ImageEditor.ViewModel
     {
         ICommand ChangeToGrayScaleCommand { get; }
         ICommand ChangeToNegativeCommand { get; }
-        void ChangeToGrayScale();
-        void ChangeToNegative();
+        void ApplyGrayscale();
+        void ApplyNegative();
     }
 }

@@ -32,5 +32,15 @@ namespace ImageEditor.ViewModel
         {
             ImageProvider.EditedImage = EffectsTools.ChangeToNegative(ImageProvider.EditedImage);
         }
+
+        public void ApplyGrayscale()
+        {
+            ImageProvider.ApplyOperation(Operation.Grayscale);
+        }
+
+        public void ApplyNegative()
+        {
+            ImageProvider.ApplyOperation(Operation.Negative);
+        }
     }
 }
