@@ -1,4 +1,5 @@
 ﻿using ImageEditor.Library.Tools;
+using ImageEditor.ViewModel.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,9 +22,14 @@ namespace ImageEditor.ViewModel
             get => _contrast;
             set
             {
-                if (value != _contrast)
+                if(value == 0 && _contrast != 0)
+                {
+                    RemoveContrast();
+                }
+                else if (value != _contrast)
                 {
                     _contrast = value;
+                    ApplyContrast();
                     OnPropertyChanged("Contrast");
                 }
             }
@@ -35,9 +41,14 @@ namespace ImageEditor.ViewModel
             get => _brightness; 
             set
             {
-                if (value != _brightness)
+                if(value == 0 && _brightness != 0)
+                {
+                    RemoveBrightness();
+                }
+                else if (value != _brightness)
                 {
                     _brightness = value;
+                    ApplyBrightness();
                     OnPropertyChanged("Brightness");
                 }
             }
@@ -47,8 +58,6 @@ namespace ImageEditor.ViewModel
         {
             LightingEnhancementTools = lightingEnhancementTools;
             ImageProvider = imageProvider;
-            PropertyChanged += ChangeBrightness;
-            PropertyChanged += ChangeContrast;
             ImageProvider.ResetEvent += OnReset;
             _contrast = 0;
             _brightness = 0;
@@ -65,15 +74,46 @@ namespace ImageEditor.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private void ChangeContrast(object sender, PropertyChangedEventArgs args)
+        private void ApplyContrast()
         {
-            if (args.PropertyName != "Contrast") return;
+            ImageProvider.ApplyOperation(Operation.Contrast);
+        }
+
+        private void ApplyBrightness()
+        {
+            ImageProvider.ApplyOperation(Operation.Brightness);
+        }
+
+        private void RemoveContrast()
+        {
+            ImageProvider.RemoveOperation(Operation.Contrast);
+        }
+
+        private void RemoveBrightness()
+        {
+            ImageProvider.RemoveOperation(Operation.Brightness);
+        }
+
+        private void OnApply(object sender, ApplyEventArgs args)
+        {
+            switch (args.Operation)
+            {
+                case Operation.Contrast:
+                    ChangeContrast();
+                    break;
+                case Operation.Brightness:
+                    ChangeBrightness();
+                    break;
+            }
+        }
+
+        private void ChangeContrast()
+        {
             ImageProvider.EditedImage = LightingEnhancementTools.ChangeContrast(new Bitmap(ImageProvider.EditedImage), _contrast);
         }
 
-        private void ChangeBrightness(object sender, PropertyChangedEventArgs args)
+        private void ChangeBrightness()
         {
-            if (args.PropertyName != "Brightness") return;
             ImageProvider.EditedImage = LightingEnhancementTools.ChangeBrightness(new Bitmap(ImageProvider.EditedImage), _brightness);
         }
     }
