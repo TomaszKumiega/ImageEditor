@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Text;
 
 namespace ImageEditor.ViewModel
@@ -55,8 +56,8 @@ namespace ImageEditor.ViewModel
 
         private void OnReset(object sender, EventArgs args)
         {
-            Contrast = 0;
-            Brightness = 0;
+            _contrast = 0;
+            _brightness = 0;
         }
 
         private void OnPropertyChanged(string name)
@@ -67,13 +68,13 @@ namespace ImageEditor.ViewModel
         private void ChangeContrast(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Contrast") return;
-            ImageProvider.EditedImage = LightingEnhancementTools.ChangeContrast(ImageProvider.OriginalImage, _contrast);
+            ImageProvider.EditedImage = LightingEnhancementTools.ChangeContrast(new Bitmap(ImageProvider.EditedImage), _contrast);
         }
 
         private void ChangeBrightness(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Brightness") return;
-            ImageProvider.EditedImage = LightingEnhancementTools.ChangeBrightness(ImageProvider.OriginalImage, _brightness);
+            ImageProvider.EditedImage = LightingEnhancementTools.ChangeBrightness(new Bitmap(ImageProvider.EditedImage), _brightness);
         }
     }
 }

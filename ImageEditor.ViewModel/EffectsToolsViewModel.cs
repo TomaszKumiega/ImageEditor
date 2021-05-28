@@ -25,12 +25,12 @@ namespace ImageEditor.ViewModel
 
         public void ChangeToGrayScale()
         {
-            ImageProvider.EditedImage = EffectsTools.ChangeToGrayScale(ImageProvider.OriginalImage);
+            ImageProvider.EditedImage = EffectsTools.ChangeToGrayScale(ImageProvider.EditedImage);
         }
 
         public void ChangeToNegative()
         {
-            ImageProvider.EditedImage = EffectsTools.ChangeToNegative(ImageProvider.OriginalImage);
+            ImageProvider.EditedImage = EffectsTools.ChangeToNegative(ImageProvider.EditedImage);
         }
     }
 }

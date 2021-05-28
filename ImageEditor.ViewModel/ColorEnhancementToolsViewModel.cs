@@ -72,18 +72,18 @@ namespace ImageEditor.ViewModel
         public void ChangeTint(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Tint") return;
-            ImageProvider.EditedImage = ColorEnhancementTools.ChangeTint(ImageProvider.OriginalImage, _tint);
+            ImageProvider.EditedImage = ColorEnhancementTools.ChangeTint(ImageProvider.EditedImage, _tint);
         }
 
         public void ChangeSaturation(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName != "Saturation") return;
-            ImageProvider.EditedImage = ColorEnhancementTools.ChangeSaturation(ImageProvider.OriginalImage, _saturation);
+            ImageProvider.EditedImage = ColorEnhancementTools.ChangeSaturation(ImageProvider.EditedImage, _saturation);
         }
 
         public void WhiteBalance()
         {
-            ImageProvider.EditedImage = ColorEnhancementTools.WhiteBalance(ImageProvider.OriginalImage);
+            ImageProvider.EditedImage = ColorEnhancementTools.WhiteBalance(ImageProvider.EditedImage);
         }
     }
 }
