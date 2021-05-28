@@ -19,10 +19,11 @@ namespace ImageEditor.Library.Converter
         public HSVImage BitmapToHSVImage(Bitmap image)
         {
             var hsvImage = new HSVImage(image.Width, image.Height);
+            var bitmap = image.Clone(new Rectangle(0, 0, image.Width, image.Height), System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 
-            Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
+            Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             System.Drawing.Imaging.BitmapData bitmapData =
-                image.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, image.PixelFormat);
+                bitmap.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, bitmap.PixelFormat);
 
             IntPtr ptr = bitmapData.Scan0;
             int stride = bitmapData.Stride;
@@ -30,13 +31,13 @@ namespace ImageEditor.Library.Converter
             unsafe
             {
                 byte* p = (byte*)(void*)ptr;
-                int offset = stride - image.Width * 3;
-                int width = image.Width * 3;
+                int offset = stride - bitmap.Width * 3;
+                int width = bitmap.Width * 3;
 
                 RGBColor rgbColor = new RGBColor();
-                for(int y=0; y<image.Height; ++y)
+                for(int y=0; y< bitmap.Height; ++y)
                 {
-                    for(int x=0; x<image.Width; ++x)
+                    for(int x=0; x< bitmap.Width; ++x)
                     {
                         rgbColor.Blue = p[0];
                         rgbColor.Green = p[1];
@@ -50,14 +51,14 @@ namespace ImageEditor.Library.Converter
                 }
             }
 
-            image.UnlockBits(bitmapData);
+            bitmap.UnlockBits(bitmapData);
 
             return hsvImage;
         }
 
         public Bitmap HSVImageToBitmap(HSVImage image)
         {
-            var bitmap = new Bitmap(image.Width, image.Height);
+            var bitmap = new Bitmap(image.Width, image.Height, PixelFormat.Format24bppRgb);
 
             Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             System.Drawing.Imaging.BitmapData bitmapData =
