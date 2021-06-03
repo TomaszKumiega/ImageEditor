@@ -8,6 +8,7 @@ namespace ImageEditor.ViewModel
 {
     public interface IEffectsToolsViewModel
     {
+        float SharpenStrength { get; set; }
         ICommand ChangeToGrayScaleCommand { get; }
         ICommand ChangeToNegativeCommand { get; }
         void ApplyGrayscale();

@@ -7,6 +7,7 @@ namespace ImageEditor.ViewModel
     public enum Operation
     {
         WhiteBalance,
+        Sharpening,
         Contrast,
         Negative,
         Grayscale,
