@@ -10,6 +10,7 @@ namespace ImageEditor.Library.Tools
     {
         private INegativeAlgorithm NegativeAlgorithm { get; }
         private IGrayscaleAlgorithm GrayscaleAlgorithm { get; }
+        private ISharpeningAlgorithm SharpeningAlgorithm { get; }
 
         public EffectsTools(INegativeAlgorithm negativeAlgorithm, IGrayscaleAlgorithm grayscaleAlgorithm)
         {
@@ -25,6 +26,12 @@ namespace ImageEditor.Library.Tools
         public Bitmap ChangeToNegative(Bitmap bitmap)
         {
             return NegativeAlgorithm.ChangeToNegative(bitmap);
+        }
+
+        public Bitmap Sharpen(Bitmap bitmap, float strength)
+        {
+            var scaledStrength = strength / 100;
+            return SharpeningAlgorithm.Sharpen(bitmap, scaledStrength);
         }
     }
 }

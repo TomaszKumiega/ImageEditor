@@ -9,5 +9,6 @@ namespace ImageEditor.Library.Tools
     {
         Bitmap ChangeToGrayScale(Bitmap bitmap);
         Bitmap ChangeToNegative(Bitmap bitmap);
+        Bitmap Sharpen(Bitmap bitmap, float strength);
     }
 }
