@@ -13,6 +13,7 @@ namespace ImageEditor.ViewModel
         Grayscale,
         Tint,
         Saturation,
-        Brightness
+        Brightness,
+        Rotate
     }
 }
