@@ -46,6 +46,7 @@ namespace ImageEditor.Windows
             builder.RegisterType<CommandFactory>().As<ICommandFactory>();
             builder.RegisterType<ColorEnhancementToolsViewModel>().As<IColorEnhancementToolsViewModel>();
             builder.RegisterType<EffectsToolsViewModel>().As<IEffectsToolsViewModel>();
+            builder.RegisterType<ShapingToolsViewModel>().As<IShapingToolsViewModel>();
             #endregion
 
             #region UserControls
@@ -54,6 +55,7 @@ namespace ImageEditor.Windows
             builder.RegisterType<LightingEnhancementToolsUserControl>().AsSelf();
             builder.RegisterType<ColorEnhancementToolsUserControl>().AsSelf();
             builder.RegisterType<EffectsToolsUserControl>().AsSelf();
+            builder.RegisterType<ShapingToolsUserControl>().AsSelf();
             #endregion
 
             #region Windows
