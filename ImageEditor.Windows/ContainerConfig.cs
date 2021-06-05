@@ -34,6 +34,8 @@ namespace ImageEditor.Windows
             builder.RegisterType<ShapingTools>().As<IShapingTools>();
             builder.RegisterType<WhiteBalanceAlgorithm>().As<IWhiteBalanceAlgorithm>();
             builder.RegisterType<HistogramStatisticsHelper>().As<IHistogramStatisticsHelper>();
+            builder.RegisterType<SharpeningAlgorithm>().As<ISharpeningAlgorithm>();
+            builder.RegisterType<RotateAlgorithm>().As<IRotateAlgorithm>();
             #endregion
 
             #region ViewModel
