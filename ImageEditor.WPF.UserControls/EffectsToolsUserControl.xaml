@@ -21,12 +21,20 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="ToGrayscaleButton" Command="{Binding ChangeToGrayScaleCommand}" Grid.Row="1" Width="200">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="ToGrayscaleButton" Command="{Binding ChangeToGrayScaleCommand}" Grid.Row="1" Width="200" Grid.ColumnSpan="2">
             <TextBlock x:Name="GrayScale" Margin="15,0,10,0"  Text="Change to grayscale" Grid.Column="0" Grid.Row="1" FontSize="17" FontFamily="Segoe Ui" Foreground="Black"/>
         </Button>
 
-        <Button x:Name="NegativeButton" Command="{Binding ChangeToNegativeCommand}" Grid.Row="3" Width="200">
+        <Button x:Name="NegativeButton" Command="{Binding ChangeToNegativeCommand}" Grid.Row="3" Width="200" Grid.ColumnSpan="2">
             <TextBlock x:Name="NegativeTextBlock" Margin="15,0,10,0"  Text="Change to negative" Grid.Column="0" Grid.Row="1" FontSize="17" FontFamily="Segoe Ui" Foreground="Black"/>
         </Button>
+
+        <TextBlock x:Name="Sharpening" Margin="15,0,10,0" Text="Sharpening" Grid.Column="0" Grid.Row="5" FontSize="17" FontFamily="Segoe Ui" Foreground="WhiteSmoke"/>
+        <Slider x:Name="SharpeningSlider" Margin="15,0,10,0" Grid.Column="1" Grid.Row="5" Maximum="100" Minimum="0" Value="{Binding Path=SharpeningStrength, Delay=500}" SmallChange="1"/>
     </Grid>
 </UserControl>
