@@ -17,7 +17,7 @@ namespace ImageEditor.ViewModel
         public ICommand ChangeToGrayScaleCommand { get; }
         public ICommand ChangeToNegativeCommand { get; }
 
-        public float SharpenStrength 
+        public float SharpeningStrength 
         { 
             get => _sharpenStrength; 
             set
